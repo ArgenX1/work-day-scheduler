@@ -3,7 +3,8 @@ var savedText = {}
 
 function initialize() {
     setInterval(() => $("#currentDay").text(moment().format("LLLL")),1000);
-    savedText = JSON.parse(localStorage.getItem("savedText"));
+    const storage = JSON.parse(localStorage.getItem("savedText"));
+    if (storage) savedText = storage;
     timeBlock.each(function() {
         if(moment().format("H") > $(this).data("hour"))$(this).children("textarea").addClass("past");
         else if(moment().format("H") == $(this).data("hour"))$(this).children("textarea").addClass("present");
